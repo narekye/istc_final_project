@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ISTC.CRM.Web.Controllers
 {
-    public class ContactContoller
+    public class ContactContoller : Controller
     {
         public ContactContoller()
         {
 
+        }
+
+        public ActionResult Index()
+        {
+            return Ok();
         }
     }
 }
