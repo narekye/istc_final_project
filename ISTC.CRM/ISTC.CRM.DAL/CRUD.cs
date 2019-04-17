@@ -5,7 +5,7 @@ using ISTC.CRM.DAL.Models;
 
 namespace ISTC.CRM
 {
-    static class CRUD
+    public static class CRUD
     {
         public static void Create(User user)
         {

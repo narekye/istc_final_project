@@ -23,7 +23,6 @@ namespace ISTC.CRM.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-DTQ5Q8H;Initial Catalog=CRMdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
@@ -72,7 +71,7 @@ namespace ISTC.CRM.DAL.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CountryName)
+                entity.Property(e => e.CompanyName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 

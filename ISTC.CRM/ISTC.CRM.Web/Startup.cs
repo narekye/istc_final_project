@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using ISTC.CRM.DAL.Models;
+using ISTC.CRM.DAL;
 
 namespace ISTC.CRM.Web
 {
@@ -18,17 +20,31 @@ namespace ISTC.CRM.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+        public void Configure(IApplicationBuilder app)
+        {                      
             app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
+            {                
+                User user2 = new User()
+                {
+                    FirstName = "Nikol",
+                    LastName = "Pashinyan",
+                    CompanyName = "Karavarutyun",
+                    Country = "Armenia",
+                    Position = "Havaixosacox",
+                    Email = "nikol@gmil.com",
+                };
+                try
+                {
+                    CRUD.Create(user2);
+                    await context.Response.WriteAsync(CRUD.Read(1).FirstName);
+                }
+                catch (Exception e)
+                {
+                    await context.Response.WriteAsync(e.InnerException.Message);       
+                }
+                
             });
         }
+        
     }
 }

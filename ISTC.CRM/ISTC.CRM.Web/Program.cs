@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace ISTC.CRM.Web
+{ 
     public class Program
     {
         public static void Main(string[] args)
