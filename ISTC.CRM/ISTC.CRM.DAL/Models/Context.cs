@@ -16,7 +16,7 @@ namespace ISTC.CRM.DAL.Models
         }
 
         public virtual DbSet<ConnectionTable> ConnectionTable { get; set; }
-        public virtual DbSet<MailLists> MailLists { get; set; }
+        public virtual DbSet<EmailLists> MailLists { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -39,13 +39,13 @@ namespace ISTC.CRM.DAL.Models
 
                 entity.Property(e => e.UserId).HasColumnName("User_ID");
 
-                entity.Property(e => e.MailListId).HasColumnName("Mail_List_ID");
+                entity.Property(e => e.MailListId).HasColumnName("Email_List_ID");
 
                 entity.HasOne(d => d.MailList)
                     .WithMany(p => p.ConnectionTable)
                     .HasForeignKey(d => d.MailListId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Mail_List_ID");
+                    .HasConstraintName("FK_Email_List_ID");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.ConnectionTable)
@@ -54,9 +54,9 @@ namespace ISTC.CRM.DAL.Models
                     .HasConstraintName("FK_User_ID");
             });
 
-            modelBuilder.Entity<MailLists>(entity =>
+            modelBuilder.Entity<EmailLists>(entity =>
             {
-                entity.ToTable("Mail_Lists");
+                entity.ToTable("Email_Lists");
 
                 entity.HasIndex(e => e.MailListName)
                     .HasName("AK_Table_Column")
@@ -64,7 +64,7 @@ namespace ISTC.CRM.DAL.Models
 
                 entity.Property(e => e.MailListName)
                     .IsRequired()
-                    .HasColumnName("Mail_List_Name")
+                    .HasColumnName("Email_List_Name")
                     .HasMaxLength(50);
             });
 

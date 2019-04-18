@@ -8,7 +8,7 @@ namespace ISTC.CRM.DAL.Models
         public int UserId { get; set; }
         public int MailListId { get; set; }
 
-        public virtual MailLists MailList { get; set; }
+        public virtual EmailLists MailList { get; set; }
         public virtual User User { get; set; }
     }
 }

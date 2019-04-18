@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ISTC.CRM.DAL.Models
 {
-    public partial class MailLists
+    public partial class EmailLists
     {
-        public MailLists()
+        public EmailLists()
         {
             ConnectionTable = new HashSet<ConnectionTable>();
         }
