@@ -11,5 +11,15 @@ namespace ISTC.CRM.DAL.Reposiroties
         public UserRepository(DbContext context) : base(context)
         {
         }
+
+        public User GetByEmail(string email)
+        {
+            foreach(User item in _context.Set<User>())
+            {
+                if (item.Email == email)
+                    return item;
+            }
+            return null;
+        }
     }
 }
