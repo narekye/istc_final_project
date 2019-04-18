@@ -13,12 +13,12 @@ namespace ISTC.CRM.BLL.Services
             var dalUsers = UnitOfWork.UserRepository.GetAll();
 
             return dalUsers
-                .Select(x => 
+                .Select(x =>
                 new UserModel
                 {
                     Id = x.Id,
                     Name = x.Name
-                }); 
+                });
         }
     }
 }

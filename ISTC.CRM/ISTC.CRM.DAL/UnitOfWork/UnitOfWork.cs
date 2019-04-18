@@ -15,8 +15,8 @@ namespace ISTC.CRM.DAL.UnitOfWork
         public UnitOfWork(DbContext context)
         {
             _context = context;
-
             UserRepository = new UserRepository(_context);
+            EmailListRepository = new EmailListRepository(_context);
         }
 
         public int SaveChanges()
