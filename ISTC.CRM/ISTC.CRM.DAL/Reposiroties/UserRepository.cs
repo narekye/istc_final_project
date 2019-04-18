@@ -21,5 +21,11 @@ namespace ISTC.CRM.DAL.Reposiroties
             }
             return null;
         }
+
+        public IEnumerable<User> GetByEmail(string name)
+        {
+            var eee = from c in _context.Set<User>()
+                      where c.
+        }
     }
 }
