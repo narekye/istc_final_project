@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ISTC.CRM.DAL
 {
-    class EmailList
+    public class EmailList
     {
     }
 }

@@ -9,8 +9,8 @@ namespace ISTC.CRM.DAL.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _context;
-
         public UserRepository UserRepository { get; }
+        public EmailListRepository EmailListRepository { get; }
 
         public UnitOfWork(DbContext context)
         {

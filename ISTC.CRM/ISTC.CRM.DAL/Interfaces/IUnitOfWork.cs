@@ -8,6 +8,7 @@ namespace ISTC.CRM.DAL.UnitOfWork
     public interface IUnitOfWork
     {
         UserRepository UserRepository { get; }
+        EmailListRepository EmailListRepository { get; }
 
         int SaveChanges();
     }
