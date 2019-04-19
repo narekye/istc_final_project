@@ -1,11 +1,9 @@
 ﻿using ISTC.CRM.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace ISTC.CRM.DAL.Reposiroties
+namespace ISTC.CRM.DAL
 {
     public class Repository<T> : IRepository<T> where T : class
     {

@@ -1,8 +1,5 @@
-﻿using ISTC.CRM.DAL.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ISTC.CRM.DAL.Interfaces;
+using ISTC.CRM.DAL.UnitOfWork;
 
 namespace ISTC.CRM.BLL.Services
 {

@@ -1,4 +1,5 @@
-﻿using ISTC.CRM.DAL.Reposiroties;
+﻿using ISTC.CRM.DAL.Interfaces;
+using ISTC.CRM.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

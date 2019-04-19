@@ -1,9 +1,6 @@
-﻿using ISTC.CRM.DAL.Reposiroties;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ISTC.CRM.DAL.Repositories;
 
-namespace ISTC.CRM.DAL.UnitOfWork
+namespace ISTC.CRM.DAL.Interfaces
 {
     public interface IUnitOfWork
     {
