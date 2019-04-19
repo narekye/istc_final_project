@@ -36,7 +36,6 @@ namespace ISTC.CRM.DAL.Reposiroties
             return _context.Set<T>().ToList();
         }
 
-
         public T GetById(int id)
         {
             return _context.Set<T>().Find(id);

@@ -70,6 +70,8 @@ namespace ISTC.CRM.DAL.Models
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.ToTable("User");
+
                 entity.HasIndex(e => e.Email)
                     .HasName("AK_User_Column")
                     .IsUnique();
