@@ -8,7 +8,7 @@ namespace ISTC.CRM.BLL.Services
 {
     public class BaseService
     {
-        protected IUnitOfWork UnitOfWork { get; }
+        protected UnitOfWork UnitOfWork { get; }
 
         public BaseService()
         {

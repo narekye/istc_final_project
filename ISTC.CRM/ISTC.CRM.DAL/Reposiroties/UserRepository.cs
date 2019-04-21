@@ -38,7 +38,7 @@ namespace ISTC.CRM.DAL.Reposiroties
             return _context.Set<User>().Where(e => e.CompanyName == companyName).ToList();
         }
 
-        public IEnumerable<User> GetByPos(string position)
+        public IEnumerable<User> GetByPosition(string position)
         {
             return _context.Set<User>().Where(e => e.Position == position).ToList();
         }
