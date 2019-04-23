@@ -1,17 +1,15 @@
 ﻿using ISTC.CRM.DAL.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System;
+using ISTC.CRM.DAL.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ISTC.CRM.DAL.Reposiroties
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly DbContext _context;
+        protected readonly CRMContext _context;
 
-        public Repository(DbContext context)
+        public Repository(CRMContext context)
         {
             _context = context;
         }
@@ -31,7 +29,7 @@ namespace ISTC.CRM.DAL.Reposiroties
             _context.Dispose();
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }

@@ -8,7 +8,7 @@ namespace ISTC.CRM.DAL.Reposiroties
 {
     public class EmailListRepository : Repository<EmailLists>
     {
-        public EmailListRepository(DbContext context) : base(context)
+        public EmailListRepository(CRMContext context) : base(context)
         {
         }
 

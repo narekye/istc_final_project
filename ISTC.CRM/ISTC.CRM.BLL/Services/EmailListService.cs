@@ -1,13 +1,18 @@
-﻿using ISTC.CRM.BLL.Models;
-using System;
+﻿using ISTC.CRM.BLL.Interfaces;
+using ISTC.CRM.BLL.Models;
+using ISTC.CRM.DAL.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ISTC.CRM.BLL.Services
 {
-    class EmailListService : BaseService
+    internal class EmailListService : BaseService, IEmailListService
     {
+        public EmailListService(CRMContext context) : base(context)
+        {
+
+        }
+
         public IEnumerable<EmailListsBL> GetAll()
         {
             var dalUsers = UnitOfWork.EmailListRepository.GetAll();
@@ -17,7 +22,7 @@ namespace ISTC.CRM.BLL.Services
                 {
                     Id = x.Id,
                     MailListName = x.MailListName,
-                    ConnectionTable = x.ConnectionTable;
+                   // ConnectionTable = x.ConnectionTable;
                 });
         }
     }

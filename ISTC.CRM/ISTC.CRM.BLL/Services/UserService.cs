@@ -1,4 +1,6 @@
-﻿using ISTC.CRM.BLL.Models;
+﻿using ISTC.CRM.BLL.Interfaces;
+using ISTC.CRM.BLL.Models;
+using ISTC.CRM.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +8,13 @@ using System.Text;
 
 namespace ISTC.CRM.BLL.Services
 {
-    public class UserService : BaseService
+    public class UserService : BaseService, IUserService
     {
+        public UserService(CRMContext context) : base(context)
+        {
+
+        }
+
         public IEnumerable<UserBL> GetAll()
         {
             var dalUsers = UnitOfWork.UserRepository.GetAll();
@@ -22,7 +29,7 @@ namespace ISTC.CRM.BLL.Services
                     CompanyName = x.CompanyName,
                     Position = x.Position,
                     Email = x.Email,
-                    ConnectionTableBL = x.ConnectionTable 
+                    //ConnectionTableBL = x.ConnectionTable 
                 });
         }
     }

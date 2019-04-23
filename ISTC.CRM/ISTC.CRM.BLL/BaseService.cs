@@ -1,8 +1,5 @@
-﻿using ISTC.CRM.DAL.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ISTC.CRM.DAL.Models;
+using ISTC.CRM.DAL.UnitOfWork;
 
 namespace ISTC.CRM.BLL.Services
 {
@@ -10,9 +7,9 @@ namespace ISTC.CRM.BLL.Services
     {
         protected UnitOfWork UnitOfWork { get; }
 
-        public BaseService()
+        public BaseService(CRMContext context)
         {
-            UnitOfWork = new UnitOfWork(null);
+            UnitOfWork = new UnitOfWork(context);
         }
     }
 }

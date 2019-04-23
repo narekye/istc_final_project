@@ -1,4 +1,5 @@
-﻿using ISTC.CRM.DAL.Reposiroties;
+﻿using ISTC.CRM.DAL.Models;
+using ISTC.CRM.DAL.Reposiroties;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,11 @@ namespace ISTC.CRM.DAL.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _context;
+        private readonly CRMContext _context;
         public UserRepository UserRepository { get; }
         public EmailListRepository EmailListRepository { get; }
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(CRMContext context)
         {
             _context = context;
             UserRepository = new UserRepository(_context);

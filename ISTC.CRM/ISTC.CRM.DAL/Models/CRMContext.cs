@@ -1,16 +1,14 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ISTC.CRM.DAL.Models
 {
-    public partial class Context : DbContext
+    public partial class CRMContext : DbContext
     {
-        public Context()
+        public CRMContext()
         {
         }
 
-        public Context(DbContextOptions<Context> options)
+        public CRMContext(DbContextOptions<CRMContext> options)
             : base(options)
         {
         }
