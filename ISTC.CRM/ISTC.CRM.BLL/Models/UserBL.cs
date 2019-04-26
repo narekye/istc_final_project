@@ -7,7 +7,7 @@ namespace ISTC.CRM.BLL.Models
     {
         public UserBL()
         {
-            ConnectionTable = new HashSet<ConnectionTableBL>();
+            //ConnectionTable = new HashSet<ConnectionTableBL>();
         }
 
         public int Id { get; set; }
@@ -18,6 +18,6 @@ namespace ISTC.CRM.BLL.Models
         public string Country { get; set; }
         public string Email { get; set; }
 
-        public virtual ICollection<ConnectionTableBL> ConnectionTable { get; set; }
+        //public virtual ICollection<ConnectionTableBL> ConnectionTable { get; set; }
     }
 }
