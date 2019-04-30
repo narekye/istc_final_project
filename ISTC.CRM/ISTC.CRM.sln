@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISTC.CRM.Web", "ISTC.CRM.Web\ISTC.CRM.Web.csproj", "{DF2A4C3D-09EE-4963-A6C6-66B370C5BC3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISTC.CRM.DAL", "ISTC.CRM.DAL\ISTC.CRM.DAL.csproj", "{FDBCD2B1-9C04-4273-A0A5-2AE0E6433CF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTC.CRM.DAL", "ISTC.CRM.DAL\ISTC.CRM.DAL.csproj", "{FDBCD2B1-9C04-4273-A0A5-2AE0E6433CF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISTC.CRM.BLL", "ISTC.CRM.BLL\ISTC.CRM.BLL.csproj", "{F9875B58-7872-4DA1-9278-123B45AD91AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTC.CRM.BLL", "ISTC.CRM.BLL\ISTC.CRM.BLL.csproj", "{F9875B58-7872-4DA1-9278-123B45AD91AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTC.CRM.Web", "ISTC.CRM.Web\ISTC.CRM.Web.csproj", "{1FED7290-8534-4884-8FE6-AFFED5831BB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DF2A4C3D-09EE-4963-A6C6-66B370C5BC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF2A4C3D-09EE-4963-A6C6-66B370C5BC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF2A4C3D-09EE-4963-A6C6-66B370C5BC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF2A4C3D-09EE-4963-A6C6-66B370C5BC3F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FDBCD2B1-9C04-4273-A0A5-2AE0E6433CF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FDBCD2B1-9C04-4273-A0A5-2AE0E6433CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDBCD2B1-9C04-4273-A0A5-2AE0E6433CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{F9875B58-7872-4DA1-9278-123B45AD91AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9875B58-7872-4DA1-9278-123B45AD91AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9875B58-7872-4DA1-9278-123B45AD91AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FED7290-8534-4884-8FE6-AFFED5831BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FED7290-8534-4884-8FE6-AFFED5831BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FED7290-8534-4884-8FE6-AFFED5831BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FED7290-8534-4884-8FE6-AFFED5831BB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
