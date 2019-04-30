@@ -5,9 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ISTC.CRM.BLL
 {
-    public class BLServiceCollection
+    // Collection of BLL Services
+    public static class BLServiceCollection
     {
-        public void Configure(IServiceCollection services)
+        // Extension method
+        public static void ConfigureCRMServices(this IServiceCollection services)
         {
             services.AddSingleton<CRMContext>();
 

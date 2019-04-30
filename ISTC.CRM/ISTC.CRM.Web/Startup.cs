@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using ISTC.CRM.BLL;
 
 namespace ISTC.CRM.Web
 {
@@ -9,6 +10,8 @@ namespace ISTC.CRM.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureCRMServices();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", o =>

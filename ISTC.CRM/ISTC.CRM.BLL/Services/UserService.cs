@@ -31,6 +31,13 @@ namespace ISTC.CRM.BLL.Services
                     Email = x.Email,
                     //ConnectionTableBL = x.ConnectionTable 
                 });
+
+            // For test
+            //return new List<UserBL>
+            //{
+            //    new UserBL { Country = "A", Email = "B", Id = 1, Name = "Edvin" },
+            //    new UserBL { Country = "AA", Email = "BB", Id = 2, Name = "Narek" }
+            //};
         }
     }
 }
