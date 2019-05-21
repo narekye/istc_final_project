@@ -21,7 +21,7 @@ namespace ISTC.CRM.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ISTC.CRM.DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer("Data Source=visual.istclabz.com;Initial Catalog=istc_crm;Integrated Security=False;Connect Timeout=30;Encrypt=False;User ID=istc_student;Password=Qwe@1234;");
             }
         }
 
