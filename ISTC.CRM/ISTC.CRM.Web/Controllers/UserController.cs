@@ -1,4 +1,5 @@
 ﻿using ISTC.CRM.BLL.Interfaces;
+using ISTC.CRM.BLL.Models;
 using ISTC.CRM.Web.Controllers.Core;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,21 +9,47 @@ namespace ISTC.CRM.Web.Controllers
     {
         private readonly IUserService _service;
 
-        // See BLLServiceCollection class, and startup class for this project
         public UserController(IUserService service)
         {
-            // _service = new UserService();
-            // Don't do this
             _service = service;
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult GetAllUsers()
         {
-            // Get all BLL layer users, and send it to the client
             var users = _service.GetAll();
 
             return Ok(users);
+        }
+
+        [HttpGet]
+        public ActionResult GetUserById(int userId)
+        {
+            var user = _service.GetUserById(userId);
+            return Ok(user);
+        }
+
+        [HttpPost]
+        public ActionResult AddUser(UserBL user)
+        {
+            _service.AddUser(user);
+
+            return Ok();
+        }
+
+        [HttpPut]
+        public ActionResult EditUser(UserBL user)
+        {
+            _service.EditUser(user);
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public ActionResult DeleteUser(int userId)
+        {
+            _service.DeleteUserById(userId);
+            return Ok();
         }
     }
 }

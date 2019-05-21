@@ -12,16 +12,16 @@ namespace ISTC.CRM.Web
         {
             services.ConfigureCRMServices();
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll", o =>
-                {
-                    o.AllowAnyOrigin();
-                    o.AllowCredentials();
-                    o.AllowAnyMethod();
-                    o.AllowAnyHeader();
-                });
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAll", o =>
+            //    {
+            //        o.AllowAnyOrigin();
+            //        o.AllowCredentials();
+            //        o.AllowAnyMethod();
+            //        o.AllowAnyHeader();
+            //    });
+            //});
 
             services.AddMvc().AddJsonOptions(options =>
             {
@@ -36,7 +36,7 @@ namespace ISTC.CRM.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("AllowAll");
+            //app.UseCors("AllowAll");
             app.UseWelcomePage("/");
             app.UseMvc();
         }
