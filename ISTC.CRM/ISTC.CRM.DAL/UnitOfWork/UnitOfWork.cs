@@ -22,7 +22,13 @@ namespace ISTC.CRM.DAL.UnitOfWork
 
         public int SaveChanges()
         {
-            return _context?.SaveChanges() ?? 0;
+            if (_context == null)
+                return 0;
+            else
+            {
+                return  _context.SaveChanges();
+            }
+
         }
     }
 }

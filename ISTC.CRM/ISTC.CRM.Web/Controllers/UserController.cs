@@ -18,7 +18,6 @@ namespace ISTC.CRM.Web.Controllers
         public ActionResult GetAllUsers()
         {
             var users = _service.GetAll();
-
             return Ok(users);
         }
 
@@ -49,7 +48,7 @@ namespace ISTC.CRM.Web.Controllers
         public ActionResult DeleteUser(int userId)
         {
             _service.DeleteUserById(userId);
-            return Ok();
+            return Ok(); //  ~/????/UserController/GetAllUsers
         }
     }
 }

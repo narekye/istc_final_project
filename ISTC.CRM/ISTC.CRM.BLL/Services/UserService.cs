@@ -25,7 +25,7 @@ namespace ISTC.CRM.BLL.Services
                 Position = user.Position
             };
 
-            var exists = UnitOfWork.UserRepository.GetByEmail(user.Email);
+            var exists = UnitOfWork.UserRepository.GetById(user.Id);
 
             if (exists != null)
             {

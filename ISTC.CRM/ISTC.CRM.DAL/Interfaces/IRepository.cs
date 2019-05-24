@@ -4,8 +4,7 @@ using System.Text;
 
 namespace ISTC.CRM.DAL.Interfaces
 {
-    public interface IRepository<T> : IDisposable
-        where T : class
+    public interface IRepository<T> : IDisposable where T : class
     {
         void Add(T entity);
 
