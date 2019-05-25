@@ -36,7 +36,6 @@ namespace ISTC.CRM.BLL.Services
 
         public void DeleteEmailListById(int emailListId)
         {
-
             if (emailListId <= 0)
             {
                 throw CreateException("emailListId not found!!");
@@ -76,9 +75,9 @@ namespace ISTC.CRM.BLL.Services
 
         public IEnumerable<EmailListsBL> GetAll()
         {
-            var dalUsers = UnitOfWork.EmailListRepository.GetAll();
+            var dalEmailLists = UnitOfWork.EmailListRepository.GetAll();
 
-            return dalUsers.Select(x =>
+            return dalEmailLists.Select(x =>
                 new EmailListsBL
                 {
                     Id = x.Id,
@@ -87,9 +86,27 @@ namespace ISTC.CRM.BLL.Services
                 });
         }
 
-        public EmailListsBL GetUserById(int userId)
+        public EmailListsBL GetEmailListsById(int emailListId)
         {
-            throw new System.NotImplementedException();
+            if (emailListId <= 0)
+            {
+                throw CreateException("emailList not found!!");
+            }
+
+            var dalemailList = UnitOfWork.EmailListRepository.GetById(emailListId);
+
+            if (dalemailList == null)
+            {
+                throw CreateException("emailList not found");
+            }
+
+            return new EmailListsBL()
+            {
+                Id = dalemailList.Id,
+                MailListName = dalemailList.MailListName
+            };
+
+
         }
     }
 }
