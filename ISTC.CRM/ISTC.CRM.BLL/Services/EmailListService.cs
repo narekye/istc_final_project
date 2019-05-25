@@ -73,19 +73,6 @@ namespace ISTC.CRM.BLL.Services
             UnitOfWork.SaveChanges();
         }
 
-        public IEnumerable<EmailListsBL> GetAll()
-        {
-            var dalEmailLists = UnitOfWork.EmailListRepository.GetAll();
-
-            return dalEmailLists.Select(x =>
-                new EmailListsBL
-                {
-                    Id = x.Id,
-                    MailListName = x.MailListName,
-                   // ConnectionTable = x.ConnectionTable;
-                });
-        }
-
         public EmailListsBL GetEmailListsById(int emailListId)
         {
             if (emailListId <= 0)
@@ -105,8 +92,19 @@ namespace ISTC.CRM.BLL.Services
                 Id = dalemailList.Id,
                 MailListName = dalemailList.MailListName
             };
+        }
 
+        public IEnumerable<EmailListsBL> GetAll()
+        {
+            var dalEmailLists = UnitOfWork.EmailListRepository.GetAll();
 
+            return dalEmailLists.Select(x =>
+                new EmailListsBL
+                {
+                    Id = x.Id,
+                    MailListName = x.MailListName,
+                   // ConnectionTable = x.ConnectionTable;
+                });
         }
     }
 }

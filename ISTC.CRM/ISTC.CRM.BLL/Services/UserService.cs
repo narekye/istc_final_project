@@ -37,21 +37,23 @@ namespace ISTC.CRM.BLL.Services
             UnitOfWork.SaveChanges();
         }
 
-        public IEnumerable<UserBL> GetAll()
+        public void DeleteUserById(int userId)
         {
-            var dalUsers = UnitOfWork.UserRepository.GetAll();
+            if (userId <= 0)
+            {
+                throw CreateException("User not found!!");
+            }
 
-            return dalUsers.Select(x =>
-                new UserBL
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Surname = x.Surname,
-                    Country = x.Country,
-                    CompanyName = x.CompanyName,
-                    Position = x.Position,
-                    Email = x.Email,
-                });
+            var dalUser = UnitOfWork.UserRepository.GetById(userId);
+
+            if (dalUser == null)
+            {
+                throw CreateException("User not found!!");
+            }
+
+            UnitOfWork.UserRepository.Delete(dalUser);
+
+            UnitOfWork.SaveChanges();
         }
 
         public void EditUser(UserBL user)
@@ -116,23 +118,21 @@ namespace ISTC.CRM.BLL.Services
             };
         }
 
-        public void DeleteUserById(int userId)
+        public IEnumerable<UserBL> GetAll()
         {
-            if (userId <= 0)
-            {
-                throw CreateException("User not found!!");
-            }
+            var dalUsers = UnitOfWork.UserRepository.GetAll();
 
-            var dalUser = UnitOfWork.UserRepository.GetById(userId);
-
-            if (dalUser == null)
-            {
-                throw CreateException("User not found!!");
-            }
-
-            UnitOfWork.UserRepository.Delete(dalUser);
-
-            UnitOfWork.SaveChanges();
+            return dalUsers.Select(x =>
+                new UserBL
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    Country = x.Country,
+                    CompanyName = x.CompanyName,
+                    Position = x.Position,
+                    Email = x.Email,
+                });
         }
     }
 }
