@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ISTC.CRM.DAL.Models
 {
@@ -14,14 +16,16 @@ namespace ISTC.CRM.DAL.Models
         }
 
         public virtual DbSet<ConnectionTable> ConnectionTable { get; set; }
-        public virtual DbSet<EmailLists> MailLists { get; set; }
+        public virtual DbSet<EmailLists> EmailLists { get; set; }
+        public virtual DbSet<EmailTemplate> EmailTemplate { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=visual.istclabz.com;Initial Catalog=istc_crm;Integrated Security=False;Connect Timeout=30;Encrypt=False;User ID=istc_student;Password=Qwe@1234;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=visual.istclabz.com;Integrated Security=false;Initial Catalog=istc_crm;User id=istc_student;Password=Qwe@1234;Encrypt=True;persist security info=True;TrustServerCertificate=True");
             }
         }
 
@@ -31,17 +35,11 @@ namespace ISTC.CRM.DAL.Models
 
             modelBuilder.Entity<ConnectionTable>(entity =>
             {
-                entity.HasKey(e => new { e.UserId, e.MailListId });
+                entity.HasKey(e => new { e.UserId, e.EmailListId });
 
-                entity.ToTable("Connection_Table");
-
-                entity.Property(e => e.UserId).HasColumnName("User_ID");
-
-                entity.Property(e => e.MailListId).HasColumnName("Email_List_ID");
-
-                entity.HasOne(d => d.MailList)
+                entity.HasOne(d => d.EmailList)
                     .WithMany(p => p.ConnectionTable)
-                    .HasForeignKey(d => d.MailListId)
+                    .HasForeignKey(d => d.EmailListId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Email_List_ID");
 
@@ -54,45 +52,21 @@ namespace ISTC.CRM.DAL.Models
 
             modelBuilder.Entity<EmailLists>(entity =>
             {
-                entity.ToTable("Email_Lists");
-
-                entity.HasIndex(e => e.MailListName)
+                entity.HasIndex(e => e.EmailListName)
                     .HasName("AK_Table_Column")
                     .IsUnique();
+            });
 
-                entity.Property(e => e.MailListName)
-                    .IsRequired()
-                    .HasColumnName("Email_List_Name")
-                    .HasMaxLength(50);
+            modelBuilder.Entity<EmailTemplate>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("User");
-
                 entity.HasIndex(e => e.Email)
                     .HasName("AK_User_Column")
                     .IsUnique();
-
-                entity.Property(e => e.CompanyName)
-                    .HasColumnName("Company_Name")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Country).HasMaxLength(50);
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Position).HasMaxLength(50);
-
-                entity.Property(e => e.Surname)
-                    .IsRequired()
-                    .HasMaxLength(50);
             });
         }
     }
