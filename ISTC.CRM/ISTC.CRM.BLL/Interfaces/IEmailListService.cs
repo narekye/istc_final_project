@@ -7,12 +7,17 @@ namespace ISTC.CRM.BLL.Interfaces
     {
         IEnumerable<EmailListsBL> GetAll();
 
-        EmailListsBL GetUserById(int userId);
+        EmailListsBL GetEmailListById(int emailListId);
 
-        void AddEmailList(EmailListsBL user);
+        EmailListsBL CreateEmailList(EmailListsBL emailList);
 
-        void EditEmailList(EmailListsBL user);
+        void AddUserToEmailList(int emailListId, int userId);
 
-        void DeleteEmailListById(int userId);
+        void AddEmailList(EmailListsBL emailList);
+
+        void EditEmailList(EmailListsBL emailList);
+
+        void DeleteEmailListById(int emailListId);
     }
 }
+

@@ -1,44 +1,46 @@
 ﻿using System.Linq;
+using  System.Net.Mail;
+using System.Collections.Generic;
 
 namespace ISTC.CRM.BLL.Services
 {
     public class GmailSender
     {
-        private readonly System.Net.Mail.MailMessage message;
-        private readonly System.Net.Mail.SmtpClient client;
+        private readonly MailMessage message;
+        private readonly SmtpClient client;
 
         #region Constructors
        
         public GmailSender()
         {
-            client = new System.Net.Mail.SmtpClient
+            client = new SmtpClient
             {
                 Host = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
-                DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false
             };
 
-            message = new System.Net.Mail.MailMessage
+            message = new MailMessage
             {
                 IsBodyHtml = false
             };
         }
 
-        public GmailSender(System.Net.Mail.MailAddress from, System.Net.Mail.MailAddress to) : this()
+        public GmailSender(MailAddress from, MailAddress to) : this()
         {
             message.From = from;
             message.To.Add(to);
         }
 
-        public GmailSender(string from, string to) : this(new System.Net.Mail.MailAddress(from), new
-            System.Net.Mail.MailAddress(to))
+        public GmailSender(string from, string to) : this(new MailAddress(from), new
+            MailAddress(to))
         { }
 
         #endregion
 
-        public GmailSender AddToMailingList(System.Collections.Generic.IEnumerable<System.Net.Mail.MailAddress> addresses)
+        public GmailSender AddToMailingList(IEnumerable<MailAddress> addresses)
         {
             foreach (var mailAddress in addresses)
             {
@@ -47,12 +49,12 @@ namespace ISTC.CRM.BLL.Services
             return this;
         }
 
-        public GmailSender AddToMailingList(System.Collections.Generic.IEnumerable<string> addresses)
+        public GmailSender AddToMailingList(IEnumerable<string> addresses)
         {
-            var listMailAddresses = new System.Collections.Generic.List<System.Net.Mail.MailAddress>();
+            var listMailAddresses = new List<MailAddress>();
 
             foreach (var address in addresses)
-                listMailAddresses.Add(new System.Net.Mail.MailAddress(address));
+                listMailAddresses.Add(new MailAddress(address));
             return AddToMailingList(listMailAddresses);
         }
 
