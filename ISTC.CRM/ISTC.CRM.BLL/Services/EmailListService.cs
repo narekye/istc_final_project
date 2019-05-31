@@ -8,103 +8,99 @@ namespace ISTC.CRM.BLL.Services
 {
     internal class EmailListService : BaseService, IEmailListService
     {
-        
-        public EmailListService(CRMContext context) : base(context)
-        {
-            
-        }
+        public EmailListService(CRMContext context) : base(context) { }
 
-        public void AddEmailList(EmailListsBL emailList)
+        public void AddUserToEmailList(int emailListId, int userId)
         {
-            var _emailList = new EmailLists
+            var emailList = UnitOfWork.EmailListRepository.GetById(emailListId);
+
+            if (emailList == null)
             {
-                Id = emailList.Id,
-                MailListName = emailList.MailListName
+                throw CreateException("Email list not found..");
+            }
+
+            var user = UnitOfWork.UserRepository.GetById(userId);
+
+            if (user == null)
+            {
+                throw CreateException("User not found..");
+            }
+
+            var emailListUserRelation = new ConnectionTable
+            {
+                EmailListId = emailListId,
+                UserId = userId
             };
 
-            var exists = UnitOfWork.EmailListRepository.GetById(_emailList.Id);
-
-            if (exists != null)
-            {
-                throw CreateException("emailList with the same id already exists");
-            }
-
-            UnitOfWork.EmailListRepository.Add(_emailList);
+            UnitOfWork.EmailListUserRepository.Add(emailListUserRelation);
 
             UnitOfWork.SaveChanges();
         }
 
-        public void DeleteEmailListById(int emailListId)
+        public EmailListsBL CreateEmailList(EmailListsBL emailListModel)
         {
-            if (emailListId <= 0)
+            var emailList = new EmailLists
             {
-                throw CreateException("emailListId not found!!");
-            }
+                EmailListName = emailListModel.MailListName
+            };
 
-            var dalemailList = UnitOfWork.EmailListRepository.GetById(emailListId);
-
-            if (dalemailList == null)
-            {
-                throw CreateException("emailList with the same id is not found");
-            }
-
-            UnitOfWork.EmailListRepository.Delete(dalemailList);
+            UnitOfWork.EmailListRepository.Add(emailList);
 
             UnitOfWork.SaveChanges();
-        }
 
-        public void EditEmailList(EmailListsBL emailList)
-        {
-            if (emailList.Id <= 0)
+            return new EmailListsBL
             {
-                throw CreateException("emailList not found!!");
-            }
-
-            var dalemailList = UnitOfWork.EmailListRepository.GetById(emailList.Id);
-
-            if (dalemailList == null)
-            {
-                throw CreateException("emailList not found!!");
-            }
-
-            if (!string.IsNullOrWhiteSpace(emailList.MailListName))
-                dalemailList.MailListName = emailList.MailListName;
-
-            UnitOfWork.SaveChanges();
-        }
-
-        public EmailListsBL GetEmailListsById(int emailListId)
-        {
-            if (emailListId <= 0)
-            {
-                throw CreateException("emailList not found!!");
-            }
-
-            var dalemailList = UnitOfWork.EmailListRepository.GetById(emailListId);
-
-            if (dalemailList == null)
-            {
-                throw CreateException("emailList not found");
-            }
-
-            return new EmailListsBL()
-            {
-                Id = dalemailList.Id,
-                MailListName = dalemailList.MailListName
+                Id = emailList.Id,
+                MailListName = emailList.EmailListName
             };
         }
 
         public IEnumerable<EmailListsBL> GetAll()
         {
-            var dalEmailLists = UnitOfWork.EmailListRepository.GetAll();
+            var dalUsers = UnitOfWork.EmailListRepository.GetAll();
 
-            return dalEmailLists.Select(x =>
+            return dalUsers.Select(x =>
                 new EmailListsBL
                 {
                     Id = x.Id,
-                    MailListName = x.MailListName,
-                   // ConnectionTable = x.ConnectionTable;
+                    MailListName = x.EmailListName,
                 });
+        }
+
+        public EmailListsBL GetEmailListById(int id)
+        {
+            var emaillist = UnitOfWork.EmailListRepository.GetById(id);
+
+            return new EmailListsBL
+            {
+                Id = emaillist.Id,
+                MailListName = emaillist.EmailListName
+            };
+        }
+
+        public void SendEmailToMailingList(int emailListId)
+        {
+            var mailingList = UnitOfWork.EmailListRepository.GetById(emailListId);
+
+            if (mailingList == null)
+            {
+                throw CreateException("Mailing list not found..");
+            }
+
+            var usersInMailingList = UnitOfWork.EmailListUserRepository.GetAll().Where(x => x.EmailListId == emailListId);
+
+            if (usersInMailingList == null && !usersInMailingList.Any())
+            {
+                return;
+            }
+
+            var gmailSender = new GmailSender().SetCredentials("crm.project.istc@gmail.com", "crm123456").SetSubject("From ISTC");
+
+            var userEmails = usersInMailingList.Select(x => UnitOfWork.UserRepository.GetById(x.UserId)).Where(x => !string.IsNullOrEmpty(x.Email)).Select(x => x.Email).AsEnumerable();
+
+            gmailSender.AddToMailingList(userEmails);
+
+            gmailSender.Send();
         }
     }
 }
